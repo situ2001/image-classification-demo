@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Demo</title>
+  </head>
+  <body>
+    <h1>Simple image classification with tf.js</h1>
+    <div>
+      <h2>Choose an image</h2>
+      <input type="file" accept="image/*" onchange="loadFile(event)">
+      <div><img id="img"/></div>
+    </div>
+    <div id="result">
+      <h2>Result</h2>
+    </div>
+  </body>
+  <style>
+    #img {
+      max-width: 50vw;
+      max-height: 50vh;
+    }
+  </style>
+  <script src="index.js"></script>
+</html>
