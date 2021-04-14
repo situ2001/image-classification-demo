@@ -3,6 +3,8 @@ import '@tensorflow/tfjs-backend-webgl';
 
 import * as model from '@tensorflow-models/mobilenet';
 
+const modelLoaded = model.load({version:2, alpha:1});
+
 window.loadFile = function (event) {
   var img = document.getElementById('img');
   img.src = URL.createObjectURL(event.target.files[0]);
@@ -12,8 +14,8 @@ window.loadFile = function (event) {
   }
 }
 
-let predict = function (img) {
-  model.load({version: 2, alpha: 1}).then(model => {
+const predict = function (img) {
+  modelLoaded.then(model => {
     model.classify(img, 5).then(predictions => {
       if (document.getElementById('table')) { document.getElementById('table').remove() }
       generateTable(predictions);
@@ -21,33 +23,33 @@ let predict = function (img) {
   });
 };
 
-let generateTable = function (predictions) {
-  let body = document.getElementById('result');
+const generateTable = function (predictions) {
+  const body = document.getElementById('result');
   
-  let table = document.createElement('table');
-  let tableBody = document.createElement('tbody');
+  const table = document.createElement('table');
+  const tableBody = document.createElement('tbody');
   table.id = 'table';
 
   // add the first row
-  let row = document.createElement('tr');
+  const row = document.createElement('tr');
   // add titles
-  let col1 = document.createElement('td');
+  const col1 = document.createElement('td');
   col1.appendChild(document.createTextNode('Class name'));
   row.appendChild(col1);
-  let col2 = document.createElement('td');
+  const col2 = document.createElement('td');
   col2.appendChild(document.createTextNode('Probability'));
   row.appendChild(col2);
   // add to tableBody
   tableBody.appendChild(row);
 
   for (let i = 0; i < predictions.length; i++) {
-    let row = document.createElement('tr');
+    const row = document.createElement('tr');
 
     for (const property in predictions[i]) {
-      let cell = document.createElement('td');
+      const cell = document.createElement('td');
       let value = predictions[i][property];
       if (typeof value === 'number') { value = (value*100).toFixed(2) + '%' }
-      let cellText = document.createTextNode(value);
+      const cellText = document.createTextNode(value);
       cell.appendChild(cellText);
       row.appendChild(cell);
     }

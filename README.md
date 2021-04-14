@@ -4,14 +4,19 @@ Brief: This is a simple image classification demo powered by tfjs.
 
 ## Usage
 
-First, input these commands.
+If you are running for the first time, input this commands.
 
-```nodejs
+```powershell
 yarn install
+```
+
+Then.
+
+```powershell
 yarn run start
 ```
 
-Then you can visit site on `http://localhost:1234`
+Then you can visit the site on `http://localhost:1234`
 
 ## Screenshot
 
